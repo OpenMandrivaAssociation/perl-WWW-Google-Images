@@ -18,6 +18,7 @@ Buildrequires:  perl(Test::URI)
 Buildrequires:  perl(WWW::Mechanize)
 Buildrequires:  perl(Image::Info)
 Buildarch:      noarch
+BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
 This module may be used search images on Google. Its interface is heavily
