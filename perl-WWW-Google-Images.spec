@@ -1,6 +1,6 @@
 %define module  WWW-Google-Images
 %define name    perl-%{module}
-%define version 0.6.4
+%define version 0.6.5
 %define release %mkrel 1
 
 Name:           %{name}
