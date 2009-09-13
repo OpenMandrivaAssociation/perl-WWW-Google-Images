@@ -1,19 +1,16 @@
-%define module  WWW-Google-Images
-%define name    perl-%{module}
-%define version 0.6.5
-%define release %mkrel 5
+%define upstream_name       WWW-Google-Images
+%define upstream_version    0.6.5
 
-Name:           %{name}
-Version:        %{version}
-Release:        %{release}
+Name:           perl-%{upstream_name}
+Version:        %perl_convert_version %{upstream_version}
+Release:        %mkrel 1
 Summary:        Google Images Agent
 License:        GPL or Artistic
 Group:          Development/Perl
-Url:            http://search.cpan.org/dist/%{module}
-Source:         http://www.cpan.org/modules/by-module/WWW/%{module}-%{version}.tar.bz2
-%if %{mdkversion} < 1010
-Buildrequires:  perl-devel
-%endif
+Url:            http://search.cpan.org/dist/%{upstream_name}
+Source:         http://www.cpan.org/modules/by-module/WWW/%{upstream_name}-%{upstream_version}.tar.bz2
+Patch0:         WWW-Google-Images-0.6.5-fix-tests.patch
+Patch1:         WWW-Google-Images-0.6.5-fix-mechanize-error-handling.patch
 Buildrequires:  perl(Test::URI)
 Buildrequires:  perl(WWW::Mechanize)
 Buildrequires:  perl(Image::Info)
@@ -25,7 +22,9 @@ This module may be used search images on Google. Its interface is heavily
 inspired from WWW::Google::Groups.
 
 %prep
-%setup -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version} 
+%patch0 -p 1
+%patch1 -p 1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
