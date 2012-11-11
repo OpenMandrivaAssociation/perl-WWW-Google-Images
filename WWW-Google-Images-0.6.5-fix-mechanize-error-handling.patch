@@ -1,0 +1,16 @@
+diff -Naur -x '*~' WWW-Google-Images-0.6.5/lib/WWW/Google/Images.pm WWW-Google-Images-0.6.5-fix-mechanize-error-handling/lib/WWW/Google/Images.pm
+--- WWW-Google-Images-0.6.5/lib/WWW/Google/Images.pm	2007-12-29 02:09:12.000000000 +0100
++++ WWW-Google-Images-0.6.5-fix-mechanize-error-handling/lib/WWW/Google/Images.pm	2009-09-13 22:06:34.000000000 +0200
+@@ -72,7 +72,11 @@
+         $arg{$key} = 'http://'.$arg{$key} if $arg{$key} !~ m,^\w+?://,o;
+     }
+ 
+-    my $a = WWW::Mechanize->new(onwarn => undef, onerror => undef);
++    my $a = WWW::Mechanize->new(
++        onwarn    => undef,
++        onerror   => undef,
++        autocheck => 0
++    );
+     $a->proxy(['http'], $arg{proxy}) if $arg{proxy};
+ 
+     my $self = bless {

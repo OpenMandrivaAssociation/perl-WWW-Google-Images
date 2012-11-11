@@ -1,0 +1,36 @@
+diff -Naur -x '*~' WWW-Google-Images-0.6.5/t/01run.t WWW-Google-Images-0.6.5-fix-tests/t/01run.t
+--- WWW-Google-Images-0.6.5/t/01run.t	2007-12-29 02:03:52.000000000 +0100
++++ WWW-Google-Images-0.6.5-fix-tests/t/01run.t	2009-09-13 21:13:04.000000000 +0200
+@@ -26,12 +26,10 @@
+     my $content_url = $image->content_url();
+     ok($content_url, "content URL exist");
+     uri_scheme_ok($content_url, 'http');
+-    like($content_url, qr/\.(png|gif|jpe?g)$/i, 'content URL is an image file URL');
+ 
+     my $context_url = $image->context_url();
+     ok($context_url, "context URL exist");
+     uri_scheme_ok($context_url, 'http');
+-    like($context_url, qr/\.(htm|html|php)$/i, 'context URL is an web page URL');
+ 
+     my $dir = tempdir(CLEANUP => $ENV{TEST_DEBUG} ? 0 : 1);
+ 
+@@ -43,6 +41,9 @@
+     $content_file = $image->save_content(dir => $dir);
+     ok(-f $content_file, 'content file is saved correctly with original name');
+ 
++    my $content_info = image_info($content_file);
++    ok(!$content_info->{error}, 'content file is an image');
++
+     my $context_file;
+     $context_file = $image->save_context(dir => $dir, file => 'context');
+     ok(-f $context_file, 'context file is saved correctly with imposed file name');
+@@ -51,6 +52,9 @@
+     $context_file = $image->save_context(dir => $dir);
+     ok(-f $context_file, 'context file is saved correctly with original name');
+ 
++    my $context_info = image_info($context_file);
++    ok($context_info->{error}, 'context file is not an image');
++
+     $image = $result->next();
+     ok(! defined $image, 'search limit < 20 works');
+ 
