@@ -11,6 +11,7 @@ Url:            https://search.cpan.org/dist/%{upstream_name}
 Source:         http://www.cpan.org/modules/by-module/WWW/%{upstream_name}-%{upstream_version}.tar.bz2
 Patch0:         WWW-Google-Images-0.6.5-fix-tests.patch
 Patch1:         WWW-Google-Images-0.6.5-fix-mechanize-error-handling.patch
+BuildRequires:	make
 Buildrequires:  perl(Test::URI)
 Buildrequires:  perl(WWW::Mechanize)
 Buildrequires:  perl(Image::Info)
