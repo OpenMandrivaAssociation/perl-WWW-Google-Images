@@ -2,12 +2,12 @@
 %define upstream_version    0.6.5
 
 Name:           perl-%{upstream_name}
-Version:        %perl_convert_version %{upstream_version}
-Release:        %mkrel 1
+Version:        %{upstream_version}
+Release:        2
 Summary:        Google Images Agent
 License:        GPL or Artistic
 Group:          Development/Perl
-Url:            https://search.cpan.org/dist/%{upstream_name}
+Url:            https://metacpan.org/dist/WWW-Google-Images
 Source:         http://www.cpan.org/modules/by-module/WWW/%{upstream_name}-%{upstream_version}.tar.bz2
 Patch0:         WWW-Google-Images-0.6.5-fix-tests.patch
 Patch1:         WWW-Google-Images-0.6.5-fix-mechanize-error-handling.patch
