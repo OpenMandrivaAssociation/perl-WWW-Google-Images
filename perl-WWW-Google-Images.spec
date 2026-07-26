@@ -1,14 +1,12 @@
 %define upstream_name       WWW-Google-Images
-%define upstream_version    0.6.5
-
 Name:           perl-%{upstream_name}
-Version:        %{upstream_version}
-Release:        2
+Version:        0.6.5
+Release:        3
 Summary:        Google Images Agent
 License:        GPL or Artistic
 Group:          Development/Perl
 Url:            https://metacpan.org/dist/WWW-Google-Images
-Source:         http://www.cpan.org/modules/by-module/WWW/%{upstream_name}-%{upstream_version}.tar.bz2
+Source:         http://www.cpan.org/modules/by-module/WWW/%{upstream_name}-%{version}.tar.bz2
 Patch0:         WWW-Google-Images-0.6.5-fix-tests.patch
 Patch1:         WWW-Google-Images-0.6.5-fix-mechanize-error-handling.patch
 BuildRequires:	make
@@ -23,7 +21,7 @@ This module may be used search images on Google. Its interface is heavily
 inspired from WWW::Google::Groups.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version} 
+%setup -q -n %{upstream_name}-%{version} 
 %patch0 -p 1
 %patch1 -p 1
 
